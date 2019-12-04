@@ -10,7 +10,7 @@ package pzm.resuelve.model.request;
 import java.io.Serializable;
 
 /**
- * Clase que contienen los atributos que se solicitan ene l servicio
+ * Clase que contienen los atributos que se solicitan en el servicio
  *
  * @author Pablo Z&uacute;niga Mata
  * @copyright PZM
