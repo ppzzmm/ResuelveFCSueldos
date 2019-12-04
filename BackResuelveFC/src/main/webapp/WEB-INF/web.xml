@@ -4,4 +4,30 @@
 
 <web-app>
   <display-name>ResuelveFC</display-name>
+
+  <context-param>
+   <param-name>contextClass</param-name>
+   <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+ 
+  <listener>
+   <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+  
+	 <servlet>
+   <servlet-name>mydispatcher</servlet-name>
+   <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+      <servlet-name>mydispatcher</servlet-name>
+      <url-pattern>/</url-pattern>
+  </servlet-mapping>
+    
+  <!-- Ruta de contexto -->
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>ResuelveFC</param-value>
+  </context-param>
+ 
 </web-app>
