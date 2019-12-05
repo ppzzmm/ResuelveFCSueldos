@@ -132,7 +132,7 @@ public class CalcularSueldoService {
 						nivelGolesPorEquipo+=nivel.getGolesXmes()!=null?nivel.getGolesXmes():0;
 					}
 				}
-				golesPorEquipo += jugador.getGoles()!=null?nivel.getGoles():0;
+				golesPorEquipo += jugador.getGoles()!=null?jugador.getGoles():0;
 			}
 		}
 		equipo.setEquipo(nivelEquipo.getEquipo());
