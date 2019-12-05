@@ -12,6 +12,7 @@ import pzm.resuelve.dto.DTOEquipo;
 import pzm.resuelve.dto.DTOJugador;
 import pzm.resuelve.dto.DTONivelesPorEquipo;
 import pzm.resuelve.model.request.ModelRequestSueldos;
+import pzm.resuelve.model.response.ModelResponseSueldos;
 
 /**
  * 
@@ -20,6 +21,73 @@ import pzm.resuelve.model.request.ModelRequestSueldos;
  * @since 04/12/2019
  */
 public class CalcularSueldoServiceTest {
+
+	/**
+	 * Test method for {@link pzm.resuelve.service.CalcularSueldoService#calcularSueldoEquipo(pzm.resuelve.model.request.ModelRequestSueldos)}.
+	 */
+	@Test
+	public void testCalcularSueldoEquipo() {
+		CalcularSueldoService calcularSueldosService = new CalcularSueldoService();
+//		Este resultado es para el jugador Luis
+		double resultadoEsperado = 59550;
+		double resultadoReal = 0;
+		
+		
+		ModelRequestSueldos requestSueldo = new ModelRequestSueldos();		
+		List<DTOJugador> jugadores = new ArrayList<DTOJugador>();
+		
+		// Datos del Jugador 1
+		DTOJugador jugador = new DTOJugador();
+		jugador.setNombre("Juan");
+		jugador.setNivel("A");
+		jugador.setGoles(6);
+		jugador.setSueldo(20000);
+		jugador.setBono(4000);
+		jugador.setEquipo("ResuelveFC");
+		jugadores.add(jugador);
+		
+		// Datos del Jugador 2
+		jugador = new DTOJugador();
+		jugador.setNombre("Pedro");
+		jugador.setNivel("B");
+		jugador.setGoles(7);
+		jugador.setSueldo(30000);
+		jugador.setBono(6000);
+		jugador.setEquipo("ResuelveFC");
+		jugadores.add(jugador);
+				
+		// Datos del Jugador 3
+		jugador = new DTOJugador();
+		jugador.setNombre("Martín");
+		jugador.setNivel("C");
+		jugador.setGoles(16);
+		jugador.setSueldo(40000);
+		jugador.setBono(8000);
+		jugador.setEquipo("ResuelveFC");
+		jugadores.add(jugador);
+				
+		// Datos del Jugador 4
+		jugador = new DTOJugador();
+		jugador.setNombre("Luis");
+		jugador.setNivel("Cuauch");
+		jugador.setGoles(19);
+		jugador.setSueldo(50000);
+		jugador.setBono(10000);
+		jugador.setEquipo("ResuelveFC");
+		jugadores.add(jugador);
+		
+		// agregamos la lista de los jugadores a la clase request
+		requestSueldo.setJugadores(jugadores);
+		
+		List<ModelResponseSueldos> resultado = calcularSueldosService.calcularSueldoEquipo(requestSueldo);
+		for(ModelResponseSueldos model:resultado) {
+			if(model.getNombre().equalsIgnoreCase("Luis")) {
+				resultadoReal = model.getSueldo_completo();
+				break;
+			}
+		}
+		assertEquals(resultadoEsperado, resultadoReal, 0.01);
+	}
 
 	/**
 	 * Test method for {@link pzm.resuelve.service.CalcularSueldoService#obtenerLaMetaDelEquipo(pzm.resuelve.dto.DTOJugador,
