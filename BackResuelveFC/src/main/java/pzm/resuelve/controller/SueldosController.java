@@ -31,12 +31,22 @@ public class SueldosController {
 	@Autowired
 	CalcularSueldoService calcularSueldosService;
 	
+		
+	/**
+	 * Servicio encargado de validar y calcular los sueldos de cada jugador de acuerdo a su equipo
+	 * 
+	 * @param capturaOficioForm
+	 * @param ModelRequestSueldos httpRequest
+	 * @return ResponseEntity<List<ModelResponseSueldos>>
+	 * @author Pablo Z&uacute;niga Mata
+	 * @since 04/12/2019
+	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(value="/calcularSueldo/")
-	public ResponseEntity<List<ModelResponseSueldos>> calcularSueldoEquipo(@RequestBody ModelRequestSueldos capturaOficioForm, HttpServletRequest httpRequest){
+	public ResponseEntity<List<ModelResponseSueldos>> calcularSueldoEquipo(@RequestBody ModelRequestSueldos requestSueldos, HttpServletRequest httpRequest){
 		List<ModelResponseSueldos> respuesta = new ArrayList<ModelResponseSueldos>();
-		if(capturaOficioForm != null && capturaOficioForm.getJugadores() != null) {
-			respuesta = calcularSueldosService.calcularSueldoEquipo(capturaOficioForm);
+		if(requestSueldos != null && requestSueldos.getJugadores() != null) {
+			respuesta = calcularSueldosService.calcularSueldoEquipo(requestSueldos);
 		}
 		return new ResponseEntity<List<ModelResponseSueldos>>(respuesta, HttpStatus.OK);
 	}
