@@ -65,7 +65,7 @@ Sistema encargado de calcular el sueldo de cada jugador en resuelveFC.
 
 >mvn -Dmaven.compiler.fork=true -Dmaven.compiler.executable="C:\Program Files\Java\jdk1.8.0_65\bin\javac" compile clean install
 
-- Esto es para deployar nuestro proyecto, es necesario ver donde se instalo el JDK en tu maquina y poner la ruta en la variable Dmaven.compiler.executable=””, por lo regular siempre lo hace en el mismo lugar aunque si se debe de coincidir con la ruta que tú tienes.
+- Esto es para deployar nuestro proyecto, es necesario ver donde se instalo el JDK en tu maquina y poner la ruta en la variable Dmaven.compiler.executable=””, por lo regular siempre lo hace en el mismo lugar aunque si debe coincidir con la ruta que tú tienes.
 
 - Al ejecutar el comando anterior nos crea un archivo WAR, este archivo lo tenemos que copiar en la ruta del servidor donde toma las aplicaciones que va a levantar, esto se hace con el siguiente comando:
 
@@ -81,7 +81,7 @@ Sistema encargado de calcular el sueldo de cada jugador en resuelveFC.
 
 >standalone.bat
 
-Listo, ya quedo levantado nuestro proyecto, hasta este punto ya tenemos nuestro webservice listo, podemos ejecutar el siguiente servido con alguna aplicación para probar servicios SOAP o REST, en este caso utilizaremos Boomerang, esta herramientas la puedes descargar desde el Google Chrome:
+Listo, ya quedo levantado nuestro proyecto, hasta este punto ya tenemos nuestro webservice listo, podemos ejecutar el servicio con alguna aplicación para probar servicios SOAP o REST, en este caso utilizaremos Boomerang, esta herramientas la puedes descargar desde el Google Chrome:
 
 -	Creamos un nuevo proyecto y lo nombramos
 
