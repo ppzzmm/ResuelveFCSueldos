@@ -40,7 +40,7 @@ public class ModelResponseSueldos implements Serializable{
 	/*
 	 * Es la suma de su sueldo fijo más el porcentaje de bono
 	 */
-	private Integer sueldo_completo;
+	private float sueldo_completo;
 	
 	/*
 	 * El equipo al que pertenece
@@ -120,14 +120,14 @@ public class ModelResponseSueldos implements Serializable{
 	/**
 	 * @return the sueldo_completo
 	 */
-	public Integer getSueldo_completo() {
+	public float getSueldo_completo() {
 		return sueldo_completo;
 	}
 
 	/**
 	 * @param sueldo_completo the sueldo_completo to set
 	 */
-	public void setSueldo_completo(Integer sueldo_completo) {
+	public void setSueldo_completo(float sueldo_completo) {
 		this.sueldo_completo = sueldo_completo;
 	}
 
