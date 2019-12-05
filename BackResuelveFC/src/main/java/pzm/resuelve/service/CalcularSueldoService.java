@@ -22,6 +22,85 @@ import pzm.resuelve.model.response.ModelResponseSueldos;
 public class CalcularSueldoService {
 	
 	/**
+	 * M&eacute;todo encargado de calcular cada uno de los sueldos de los jugadores por equipo
+	 * 
+	 * @param request
+	 * @return
+	 * @author Pablo Z&uacute;niga Mata
+	 * @since 04/12/2019
+	 */
+	public List<ModelResponseSueldos> calcularSueldoEquipo(ModelRequestSueldos request){
+		List<ModelResponseSueldos> sueldos = new ArrayList<>();
+		DTOEquipo equipo = new DTOEquipo();
+		
+		for(DTOJugador jugador: request.getJugadores()) {
+			DTONivelesPorEquipo nivelEquipo = new DTONivelesPorEquipo();
+			if(request.getEquipos() != null) {
+				for(DTONivelesPorEquipo nivel:request.getEquipos()) {
+					if(jugador.getEquipo().equalsIgnoreCase(nivel.getEquipo())) {
+						nivelEquipo = nivel;
+						break;
+					}
+				}
+			}else {
+				nivelEquipo = obtenerEquipoPredeterminado(jugador.getEquipo());
+			}
+			// obtenemos la meta del equipo
+			equipo = obtenerLaMetaDelEquipo(request.getJugadores(),nivelEquipo,jugador.getNivel());
+			
+			// En base a los datos ingresados calculamos el sueldo del jugador
+			sueldos.add(calcularSueldoJugador(jugador, equipo.getGolesIndividual(), equipo.getNivelGolesPorEquipo(), equipo.getGolesPorEquipo()));
+		}
+		return sueldos;
+	}
+	
+	
+	/**
+	 * M&eacute;todo encargado de calcular el sueldo de los jugadores en base a sus resultados
+	 * 
+	 * @param request
+	 * @return ModelResponseSueldos
+	 * @author Pablo Z&uacute;niga Mata
+	 * @since 04/12/2019
+	 */
+	public ModelResponseSueldos calcularSueldoJugador(DTOJugador req, 
+			Integer nivleGolesIndividual, Integer nivleGolesPorEquipo, Integer golesPorEquipo) {
+		
+		ModelResponseSueldos respuesta = new ModelResponseSueldos();		
+		float resultado = 0F;	
+		
+		float bonoGolesIndividuales = 0F;
+		float bonoGolesEquipo = 0F;
+		
+		if(req.getSueldo() != null && req.getBono() != null && req.getGoles() != null) {
+			
+			if(req.getGoles() >= nivleGolesIndividual ) {
+				bonoGolesIndividuales = req.getBono()/2;
+			}else {
+				bonoGolesIndividuales = (req.getBono()*req.getGoles())/(2*nivleGolesIndividual);
+			}
+			
+			if(golesPorEquipo >= nivleGolesPorEquipo ) {
+				bonoGolesEquipo = req.getBono()/2;
+			}else {
+				bonoGolesEquipo = (req.getBono()*golesPorEquipo)/(2*nivleGolesPorEquipo);
+			}
+			
+			resultado = req.getSueldo()+(bonoGolesIndividuales)+(bonoGolesEquipo);
+		}
+		
+		respuesta.setNombre(req.getNombre());
+		respuesta.setGoles_minimos(nivleGolesIndividual);
+		respuesta.setGoles(req.getGoles());
+		respuesta.setSueldo(req.getSueldo());
+		respuesta.setBono(req.getBono());
+		respuesta.setSueldo_completo(resultado);
+		respuesta.setEquipo(req.getEquipo());
+		
+		return respuesta;
+	}
+	
+	/**
 	 * M&eacute;todo encargado de obtener la meta del equipo
 	 * 
 	 * @param jugadores
@@ -32,7 +111,7 @@ public class CalcularSueldoService {
 	 * @since 04/12/2019
 	 */
 	public DTOEquipo obtenerLaMetaDelEquipo(List<DTOJugador> jugadores, DTONivelesPorEquipo nivelEquipo, String tipoNivel) {
-    DTOEquipo equipo = new DTOEquipo();
+		DTOEquipo equipo = new DTOEquipo();
 		Integer nivelGolesPorEquipo = 0;
 		Integer golesPorEquipo = 0;
 		Integer golesIndividual = 0;
