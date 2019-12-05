@@ -1,10 +1,3 @@
-/*
- * ModelRequestEquipo.java 04/12/2019
- * <p>
- * Copyright (C) 2019 PZM
- * <p>
- * Todos los derechos reservados.
- */
 package pzm.resuelve.dto;
 
 import java.io.Serializable;
@@ -13,7 +6,6 @@ import java.io.Serializable;
  * Clase que contienen los atributos que se solicitan del equipo
  *
  * @author Pablo Z&uacute;niga Mata
- * @copyright PZM
  * @since 04/12/2019
  */
 public class DTOEquipo implements Serializable {
