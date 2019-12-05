@@ -119,7 +119,7 @@ public class CalcularSueldoService {
 		// Barremos la lista de los tipo de niveles del equipo parar obtener la meta de goles por mes del nivel.
 		for(DTOAtributosNivel nivel: nivelEquipo.getTipoNiveles()) {
 			if(tipoNivel.equalsIgnoreCase(nivel.getNivel())) {
-				golesIndividual = nivel.getGolesXmes();
+				golesIndividual = nivel.getGolesXmes()!=null?nivel.getGolesXmes():0;
 				break;
 			}
 		}
@@ -129,10 +129,10 @@ public class CalcularSueldoService {
 			if(jugador.getEquipo().equalsIgnoreCase(nivelEquipo.getEquipo())) {
 				for(DTOAtributosNivel nivel: nivelEquipo.getTipoNiveles()) {
 					if(jugador.getNivel().equalsIgnoreCase(nivel.getNivel())) {
-						nivelGolesPorEquipo+=nivel.getGolesXmes();
+						nivelGolesPorEquipo+=nivel.getGolesXmes()!=null?nivel.getGolesXmes():0;
 					}
 				}
-				golesPorEquipo += jugador.getGoles();
+				golesPorEquipo += jugador.getGoles()!=null?nivel.getGoles():0;
 			}
 		}
 		equipo.setEquipo(nivelEquipo.getEquipo());
