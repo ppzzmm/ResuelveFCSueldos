@@ -1,10 +1,3 @@
-/*
- * ModelResponseSueldos.java 04/12/2019
- * <p>
- * Copyright (C) 2019 PZM
- * <p>
- * Todos los derechos reservados.
- */
 package pzm.resuelve.model.response;
 
 import java.io.Serializable;
@@ -13,25 +6,45 @@ import java.io.Serializable;
  * Clase que contienen los atributos que mandaran como  resultado.
  *
  * @author Pablo Z&uacute;niga Mata
- * @copyright PZM
  * @since 04/12/2019
  */
 public class ModelResponseSueldos implements Serializable{
 
 	private static final long serialVersionUID = 4694395484436004114L;
 	
+	/*
+	 * Nombre del jugador
+	 */
 	private String nombre;
 	
+	/*
+	 * Goles meta por mes
+	 */
 	private Integer goles_minimos;
 	
+	/*
+	 * Goles anotados en el mes
+	 */
 	private Integer goles;
 	
+	/*
+	 * Sueldo fijo
+	 */
 	private Integer sueldo;
 	
+	/*
+	 * Bono del jugador a alcanzar
+	 */
 	private Integer bono;
 	
+	/*
+	 * Es la suma de su sueldo fijo más el porcentaje de bono
+	 */
 	private Integer sueldo_completo;
 	
+	/*
+	 * El equipo al que pertenece
+	 */
 	private String equipo;
 
 	/**
