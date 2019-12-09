@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import pzm.resuelve.model.request.ModelRequestSueldos;
 import pzm.resuelve.model.response.ModelResponseSueldos;
@@ -25,6 +26,7 @@ import pzm.resuelve.service.CalcularSueldoService;
  * @since 04/12/2019
  */
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping(value = "/servicio")
 public class SueldosController {
 	
